@@ -1,0 +1,11 @@
+[Unit]
+Description=VEL-GPC Server
+After=network.target
+
+[Service]
+WorkingDirectory=/home/ec2-user/vel-gpc
+Environment="PATH=/home/ec2-user/miniconda3/bin"
+ExecStart=/home/ec2-user/miniconda3/bin/gunicorn --reload -w 3 -b :5000 app:app
+
+[Install]
+WantedBy=multi-user.target

@@ -1,9 +1,11 @@
 import os
+import logging
 from flask import Flask, request
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__) 
- 
+
+
 UPLOAD_FOLDER = '.'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -23,5 +25,5 @@ def upload_worldmap():
         
  
 if __name__ == '__main__': 
-        app.run(port=5000, debug=True)  
-
+    app.run(port=5000, debug=True)  
+        

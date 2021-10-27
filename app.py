@@ -13,17 +13,17 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def main(): 
         return 'VEL-GPC' 
          
-@app.route('/worldmap', methods = ['GET', 'PUT'])
+@app.route('/worldmap', methods = ['GET', 'POST'])
 def upload_worldmap():
-        if request.method == 'PUT':
-                #f = request.files['file']
-                f = request.data
-                #filename = secure_filename(f.filename)
-                filename = secure_filename("worldmap")
-                file = open(os.path.join(app.config['UPLOAD_FOLDER'], filename), 'wb')
-                file.write(f)
-                file.close()
-                #f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        if request.method == 'POST':
+                f = request.files['file']
+                #f = request.data
+                filename = secure_filename(f.filename)
+                #filename = secure_filename("worldmap")
+                #file = open(os.path.join(app.config['UPLOAD_FOLDER'], filename), 'wb')
+                #file.write(f)
+                #file.close()
+                f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                 return 'Uploading file'
         if request.method == 'GET':
                 return 'get file'

@@ -1,4 +1,5 @@
 import os
+import json
 import logging
 from flask import Flask, request, send_file
 from werkzeug.utils import secure_filename
@@ -33,6 +34,14 @@ def download_worldmap():
     if request.method == 'GET':
         return send_file('./worldmap', as_attachment=True)
 
+
+@app.route('/serialize', methods = ['POST'])
+def upload_serialized_data():
+    if request.method == 'POST':
+        content = request.json
+        with open('json_data.json', 'w') as f:
+            json.dump(content, f)
+        return 'uploaded data'
 
 if __name__ == '__main__': 
     app.run(port=5000, debug=True)  

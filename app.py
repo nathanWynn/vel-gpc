@@ -41,8 +41,14 @@ def upload_serialized_data():
         content = request.json
         with open('json_data.json', 'w') as f:
             json.dump(content, f)
+        print(content)
         return 'uploaded data'
+
+@app.route('/getserializedjsonobjects', methods = ['GET'])
+def download_serialized_data():
+    if request.method == 'GET':
+        return send_file('./json_data.json', as_attachment=True)
 
 if __name__ == '__main__': 
     app.run(port=5000, debug=True)  
-        
+       
